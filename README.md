@@ -1,0 +1,2 @@
+# redcards-app
+phonegap app
