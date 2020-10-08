@@ -1,0 +1,253 @@
+/*-
+{ "v":"1", "prefix":"_", settings:[
+	
+	{ "section": "font",  "controls":[
+	  { "name": "Base font", "key":"fontbase", "type":"font", "value":"font-family:'Aleo'; color:#333;" },
+		{ "name": "Text backing", "key": "highlightbackcolor", "type":"color", value:"none" }
+
+	  { "name": "Heading 1", "key":"fonth1", "type":"font", "value":"font-family:'Alegreya SC'; font-weight: bold; font-size: 64px;" },
+	  { "name": "Heading 2", "key":"fonth2", "type":"font", "value":"font-size: 54px;" },
+	  { "name": "Heading 3", "key":"fonth3", "type":"font", "value":"font-size: 50px;" },
+	  { "name": "Heading 4", "key":"fonth4", "type":"font", "value":"font-size: 46px;" },
+
+		{ "name": "Page Number", "key":"pagenofont", "type":"font" },
+
+		{ "name": "Image Caption", "key":"captionfont", "type":"font" },
+
+		{ "name": "Table", "key":"fonttable", "type":"font", "value":"font-size:34px" },
+
+		{ "name": "Table: Header row", "key":"fontth", "type":"font", "value":"font-weight:bold" },
+		{ "name": "Table: Row", "key":"fonttr", "type":"font" },
+		{ "name": "Table: Cell", "key":"fonttd", "type":"font" },
+
+		{ "name": "Code", "key":"fontcode", "type":"font" },
+		{ "name": "Poetry", "key":"fontpoetry", "type":"font" }
+	]},
+
+	{ "section": "align", "controls":[
+		{ "name": "general text", "key":"basealign", "type":"list", "value":"center", "list":["left", "center", "right"] },
+		{ "name": "padding", "key": "basepadding", "type":"value" }
+
+		{ "name", "vertical", "key":"vertalign", "type":"list", "value":"middle", "list":["top", "middle", "bottom"] } 
+	]},
+	
+	{ "section": "pageno", "controls":[
+		{ "name": "top", "key":"pagenotop", "type":"value", "value":"unset" },
+		{ "name": "bottom", "key":"pagenobot", "type":"value", "value":"60px" },
+		{ "name": "left", "key":"pagenoleft", "type":"value", "value":"unset" },
+		{ "name": "right", "key":"pagenoright", "type":"value", "value":"unset" },
+
+		{ "name": "padding", "key":"pagenopadding", "type":"value", "value":"0" },
+		{ "name": "background", "key":"pagenobackground", "type":"background" }
+	]},
+
+	{ "section": "foreground", "controls":[
+		{ "name": "overlay", "key":"overlaybacking", "type":"background", "value":"url(template-assets/scrunch-overlay-1_yjcpzf.png)" },
+		{ "name": "opacity", "key":"overlayopacity", "type":"percent", "value":"0.5" },
+		{ "name": "blend mode", "key":"overlayblend", "type":"list", "value":"multiply", list:["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"] },
+
+	] },
+
+	{ "section": "background", "controls":[
+		{ "name": "Background", "key": basebackground", "type":"background", "value":"color:#efefef; image:url(template-assets/making-universal-paper-6_boto1v.jpg);" }		
+	]},
+
+	{ "section": "border", "controls":[
+		{ "name": "Inside width", "key": innerwidth", "type":"value", "value":"100%" },
+		{ "name": "Inside height", "key": innerheight", "type":"value", "value":"100%" },
+		{ "name": "Inside padding", "key": innerpadding", "type":"padding", "value":"40px 60px 80px 60px" },
+		{ "name": "Inside border", "key": innerborder", "type":"border", "value":"2px solid rgba(0,0,0,0.5)" },
+		{ "name": "Inside radius", "key": innerradius", "type":"value", "value":"20px" },
+		{ "name": "Inside background", "key":"innerbackground", type:"background" },
+	] },
+
+	{ "section": "other", "controls":[
+		{ "name", "text", "key":"textcss", "type":"code" },
+		{ "name", "span", "key":"spancss", "type":"code" },
+		{ "name", "page no", "key":"pagenocss", "type":"code" },
+
+		{ "name", ".eachcard", "key":"eachcardcss", "type":"code" },
+		{ "name", ".abs-outter", "key":"absouttercss", "type":"code" },
+		{ "name", ".redcard", "key":"redcardcss", "type":"code" },
+		{ "name", ".redcard-inner (Inside border)", "key":"redcardinnercss", "type":"code" },
+		{ "name", ".card-overlay", "key":"cardoverlaycss", "type":"code" },
+
+		{ "name", "img", "key":"allimagecss", "type":"code" },
+		{ "name", "image caption", "key":"cardcaptioncss", "type":"code" },
+
+		{ "name", ".type-text", "key":"typetextcss", "type":"code" },
+		{ "name", ".type-image", "key":"typeimagecss", "type":"code" },
+		{ "name", ".type-textimage", "key":"typetextimagecss", "type":"code" },
+
+		{ "name", "h1", "key":"h1css", "type":"code" },
+		{ "name", "h2", "key":"h2css", "type":"code" },
+		{ "name", "h3", "key":"h3css", "type":"code" },
+		{ "name", "h4", "key":"h4css", "type":"code" },
+
+		{ "name", "ol", "key":"olcss", "type":"code" },
+		{ "name", "ol li", "key":"ollicss", "type":"code" },
+		{ "name", "ul", "key":"ulcss", "type":"code" },
+		{ "name", "ul li", "key":"ullicss", "type":"code" },
+
+		{ "name", "table", "key":"tablecss", "type":"code" },
+		{ "name", "th", "key":"thcss", "type":"code" },
+		{ "name", "tr", "key":"trcss", "type":"code" },
+		{ "name", "td", "key":"tdcss", "type":"code" }
+	]}
+]}
+-*/
+
+
+/* everything contained within eachcard */
+.eachcard {
+	_eachcardcss;
+}
+
+/* absolute layer */
+.abs-outter {
+	_absouttercss;
+}
+
+/* main container for everything redcard */
+.redcard {
+	_fontbase; /* font-family: 'Aleo', sans-serif;  color: #333; */
+	text-align: _basealign;
+	padding: _basepadding;
+	background: _basebackground; /* color #efefef  image template-assets/making-universal-paper-6_boto1v.jpg */
+	margin: 0;
+	_redcardcss; 
+}
+
+/* inner content */
+.redcard-inner {
+	width: _innerwidth; /* 100%; */
+	height: _innerheight; /* 100%; */
+	padding: _innerpadding; /* 40px 60px 80px 60px; */
+	border: _innerborder; /* 2px solid rgba(0,0,0,0.5); */
+	border-radius: _innerradius; /* 20px; */
+	background: _innerbackground; /* rgba(0,0,0,0.3); */
+	_redcardinnercss;
+}
+
+/* overlay over everything */
+.card-overlay { 
+	background: _overlaybacking; /* url(template-assets/scrunch-overlay-1_yjcpzf.png); */
+  opacity: _overlayopacity; /* 0.5; */
+  mix-blend-mode:  _overlayblend; /* multiply. list: normal, multiply, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color, luminosity; */
+	_cardoverlaycss;  
+}
+
+/* three layout types */
+.redcard.type-text { _typetextcss; }
+.redcard.type-image { _typeimagecss; }
+.redcard.type-textimage { _typetextimagecss; }
+
+/* images */
+.redcard img { /* any/all image however added... */
+	_allimagecss;
+}
+.coverimage { /* the cover page */
+	/*_coverimagecss;*/
+}
+.cardimage-holder { /* div holder for any image added in the content */
+	
+}
+.cardimage-holder img { /* image element for any content image */
+}
+.redcard.type-image .cardimage-holder { /* image holder - for image only cards */
+}
+.redcard.type-image img { /* image card image component */   
+}
+.redcard.type-textimage .cardimage-holder { /* image holder - for text & image cards */
+	 /* might have clip-path in here for example */
+}
+.redcard.type-textimage img { /* text/image card image component */   
+}
+
+/*?? .cardimage {
+} */
+
+.redcard .cardcaption {
+	_captionfont;
+	_cardcaptioncss;
+}
+
+/* headings */
+.redcard h1, .redcard h2, .redcard h3, .redcard h4 {
+	_fonth1; /* font-family:'Alegreya SC'; font-weight: bold; font-size: 64px; */
+}
+.redcard h1 {
+	_h1css;
+}
+.redcard h2 {
+	_fonth2; /* font-size: 54px; */
+	_h2css;
+}
+.redcard h3 {
+	_fonth3; /* font-size: 50px; */
+	_h3css;
+}
+.redcard h4 {
+	_fonth4; /* font-size: 46px; */
+	_h4css;
+}
+
+.redcard ol { _olcss }
+.redcard ol li { _ollicss }
+.redcard ul { _ulcss }
+.redcard ul li { _ullicss }
+
+.redcard table {
+	_fonttable; /* inherit, size:34px; */
+	_tablecss;
+}
+.redcard th { 
+	_fontth; 
+	_thcss;
+}
+.redcard tr { 
+	_fonttr;
+	_trcss 
+}
+.redcard td {
+  _fonttd; 
+	_tdcss 
+}
+
+/* text */
+.redcard .cardtext {
+	_textcss;
+}
+.cardtext span {
+	background-color: _highlightbackcolor; /* none   - "highligher pen": it's good yellow */
+	_spancss;
+}
+
+.redcard.cardtext em { font-style: italic; }
+.redcard.cardtext strong { font-weight: 600; }
+.redcard.cardtext sup {  }
+
+.redcard pre.code { /* technical stuff */
+	_fontcode;
+	padding: _fontcodepadding;
+	background: _fontcodebackground;
+}
+
+.redcard pre.code.poetry { /* poetry (2 tabs) */
+	_fontpoetry;
+	padding: _fontpoetrypadding;
+	background: _fontpoetrybackground;
+}
+
+.pageno {
+	top:  _pagenotop; /* unset; */
+	bottom: _pagenobot; /* 60px; */
+	left: _pageleft; /* unset */
+	right: _pageright; /* unset */
+	
+	_pagenofont; /* includes colour etc. */
+	padding: _pagenopadding;
+	background: _pagenobackground;
+
+	_pagenocss;
+}

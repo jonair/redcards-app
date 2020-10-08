@@ -1,0 +1,516 @@
+/* pre element auto scroll if content exceeds bounds 
+@keyframes left-one {
+  0%  {
+    transform:translateX(100%);
+*/
+
+html, body {
+	overflow: hidden;
+}
+
+a {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+input {
+	width:100%;
+	background-color: white;
+	border: none;
+	outline: none;
+}
+
+.app {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #f8f2f2;
+	overflow: hidden;
+}
+
+#heading-area {
+  height: 75px;
+  overflow: hidden;
+}
+
+#read-progress {
+	position: absolute;
+	top: 73px;
+	left: 0;
+	background-color: red;
+	height: 4px;
+	width: 0px;
+	transition: width 0.3s ease;
+}
+
+#header-bar {
+	margin: 5px;
+	padding: 0;
+	font-size: 17px;
+	color: #fffee4;
+
+	/*background-color: #d8d2d2;*/
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+
+  width: 100%;
+  border-radius: 0px;
+
+  transition: width 0.5s ease, border-radius 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+}
+
+#header-bar.closed {
+	/*background-color: white;*/
+}
+
+#header-bar.closed, .prev-card { 
+	display: inline-block;
+	margin: 5px;
+	width: 35px;
+	height: 60px;
+  border-radius: 8px;
+}
+
+#header-bar.closed > .dynamic-heading {
+	text-overflow: clip;
+}
+
+pre {
+	display: inline-block;
+	font-family: 'Poppins';
+	font-weight: bold;
+	padding: 5px 10px;
+	margin:0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 16px;
+	color: white;
+	background-color: red;	
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+.nowrap-scroll {
+	white-space: nowrap;
+	animation: 15s infinite scrolltitle;
+	animation-delay: 2s;	
+}
+
+@keyframes scrolltitle {
+	0% { 	 transform: translateX(0%);   }
+	68% {  transform: translateX(-50%); }
+	70% { transform: translateX(0%);    }
+	100% { transform: translateX(0%);   }
+}
+
+.read-overlay {
+	position: absolute;
+	/*
+	z-index: 101;
+	width:100%;
+	height:100%;
+	background-color: rgba(243,158,10,0.03);
+	mix-blend-mode: multiply;
+	*/
+	pointer-events: none;
+}
+
+.card-trans {
+	transition: transform 0.3s, margin 0.2s;
+}
+.card-dragging > .redcard {
+	-webkit-box-shadow: 0px 0px 100px -10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 100px -10px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 100px -10px rgba(0,0,0,0.5);	
+}
+
+#previous-cards {
+	display: inline-block;
+}
+
+.prev-card {
+	position: absolute; /* fixes little glitch */
+	background-color: white;
+	width: 36px;
+	height: 60px;
+	opacity: 0;
+	cursor: pointer;
+}
+.prev-card .eachcard {
+	position: absolute;
+	transform-origin: top left;
+	transform: scale(0.06,0.06);
+	transition: opacity 1s ease;
+}
+
+.prev-card.show {
+	position: relative;
+	opacity: 1;
+}
+
+.dynamic-heading {
+	white-space: nowrap;
+  overflow: hidden;
+}
+
+.dynamic-heading i {
+  position: relative;
+  top: -12px;	
+	padding: 20px 14px 20px 10px;
+	color: red;
+	cursor: pointer;
+}
+
+.top-title { 
+	display: inline-block;
+	margin-left: 2px;
+	padding: 14px 0;
+	font-weight: 200;
+	font-size: 18px;
+  width: 100%;
+}
+
+#card-holder, #next-card-holder {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	/*padding: 0 40px;*/
+}
+
+#card-holder .eachcard, #next-card-holder .eachcard {
+	display: block;
+	margin: auto;
+}
+
+.hint-turn {
+	animation: 4s infinite turnhint;
+	animation-delay: 3s;
+}
+
+@keyframes turnhint {
+	0% { 
+		margin-top: 0px; 
+		margin-left: 0px;
+		transform: scale(1,1) rotate(0deg);		
+	}
+	12% {
+		margin-top: 5px; 
+		margin-left: 30px;
+		transform: scale(0.96,0.96) rotate(-2deg);
+	}
+	25% {
+		margin-top: 0px; 
+		margin-left: 0px;
+		transform: scale(1,1) rotate(0deg);		
+	}
+	100% {
+		margin-top: 0px; 
+		margin-left: 0px;
+		transform: scale(1,1) rotate(0deg);		
+	}
+}
+
+.footer-bar {
+	position: absolute;
+	z-index: 60;
+	width: 100%;
+	bottom: 0px;
+	height: 150px;
+	overflow: hidden;
+  text-align: center;	
+  opacity: 0.88;
+  transition: opacity 0.5s ease, bottom 0.75s ease;
+  pointer-events: none;
+}
+.footer-bar.half {
+	bottom: -75px;
+}
+.footer-bar.hide-footer {
+	opacity: 0;
+}
+.footer-bar.open {
+	opacity: 0.8;
+	bottom:100px;	
+}
+
+.semi:before{
+  height: 100%;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.semi {
+  width: 120%;
+  height: 300px;
+	color: red;
+	background-color: #f5f3f3;
+  border-radius: 100%;
+  top: 0px;
+  left: -10%;
+  right: 0;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+
+  transition: color 1s, background-color 1s;
+}
+
+.open .semi {	
+	color: white;
+	background-color: red;
+  /* shadow */
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);  
+}
+
+#browse-search {
+	top: -10px;
+	position: relative;
+	/* margin-top: -15px; */
+	padding: 20px;
+	font-size: 34px;
+	cursor: pointer;
+}
+i#account {
+	margin-top: 20px;
+	margin-right: 25px;
+	padding: 15px;
+	font-size: 22px;
+	cursor: pointer;
+}
+i#settings {
+	margin-left: 25px;
+	padding: 15px;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+.hidden {
+	opacity: 0;
+}
+
+#browse-search-info {
+	position: absolute;
+	z-index: 70;
+	text-align: center;
+	background-color: red;
+	width: 100%;
+	padding: 0 20px;
+	height: 160px;
+	bottom: -160px;
+	opacity: 0.66;
+	transition: opacity 0.5s ease, bottom 0.75s ease;
+}
+#browse-search-info.open {
+	bottom: 0;
+	opacity: 0.8;
+}
+
+
+.heart-pulse {
+  animation: pulse 1s infinite;
+}
+
+#heart {
+	position: relative;
+	top: 15px;
+	left: 50%;
+	margin-left: -45px;
+  width: 90px;
+  height: 80px;
+}
+#heart:before,
+#heart:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 40px;
+  height: 70px;
+  background: red;
+  border-radius: 50px 50px 15px 15px;
+}
+#heart:before {
+  left: 40px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+#heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+@keyframes pulse {
+  0% {
+  	transform: scale(1,1);
+  	opacity: 0.7;
+  }
+  70% {
+  	transform: scale(1.02,1.02);
+  	opacity: 1;
+  }
+  80% {
+  	transform: scale(1.02,1.02);
+  }
+  100% {
+  	transform: scale(1,1);
+  	opacity: 0.7;
+  }
+}
+
+.list-section {
+  margin: 5px 0 0 0;
+  padding: 5px 0 0 10px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/*.list-section div:first-child {*/
+.zoom-tilt {
+	transform: rotate(-4deg) scale(1.15,1.15);
+}
+
+#library {
+	height: -webkit-fill-available;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-bottom: 200px;
+}
+
+.section-title {
+  margin: 5px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #bcb8b8;
+  letter-spacing: 2px;
+}
+
+.browse-cover {
+  display: inline-block;
+  margin: 5px;
+  border-radius: 6px;
+  width: 100px;
+  height: 165px;
+  background-color: #eee;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	text-align: left;
+	overflow: hidden;
+
+  /* shadow */
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);  
+
+	transition: transform 0.33s ease;
+  cursor: pointer;
+}
+
+.browse-cover.open {
+	transform: scale(1.1, 1.1);
+}
+
+.browse-title {
+	margin-top: 150px;
+	width: 100px;
+	height: 100%;
+	max-height: 55px;
+	background-color: red;
+	color: white;
+	padding: 3px 5px;
+	font-size: 9px;
+	text-align: center;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	text-overflow: all;
+	text-transform: uppercase;
+	overflow: hidden;
+	opacity: 0;
+	transition: margin-top 0.5s ease, opacity 0.2s;
+}
+
+.browse-cover.open .browse-title {
+	transform: scale(1.33, 1.33);
+	margin-top: 110px;
+	opacity: 0.8;
+}
+
+#before-reading {
+	position: absolute;
+	z-index: 90;
+	width: 100%;
+	padding: 20px 30px;
+	bottom: -380px;
+	height: 400px;
+	color: white;
+	font-size: 16px;
+	line-height: 24px;
+	background-color: rgba(255,0,0,0.8);
+	pointer-events: all;
+	transition: bottom 1s ease;
+}
+
+#before-reading.show-before {
+	transition: bottom 1s ease;
+	bottom: 0px;
+}
+
+#before-reading.gone {
+	bottom: -410px;
+}
+
+.si-subtitle { 
+	font-family: 'Poppins';
+	font-size: 22px;
+	line-height: 32px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.si-author {  
+	font-size: 22px;
+	font-family: 'Poppins';
+	margin-bottom: 5px;
+}
+.si-contributors {  }
+.si-description {
+	margin: 20px 0;
+	font-size: 18px;
+	max-height: 125px;
+	overflow-y: scroll;
+}
+.si-copyright {  }
+.si-url {  }
+
+.si-card-count,
+.si-genre, .si-age:not(:empty) {  
+	float: left;
+	margin-top: 10px;
+	margin-right: 10px;
+	padding: 2px 5px;
+	border-radius: 2px;
+	color: red;
+	background-color: white;
+}
+.si-card-count {
+
+}
+.si-genre {
+	
+}
+.si-age:empty {
+	display: none;
+}  
+.si-age {  
+}
+
+.si-rating {
+	margin-top: 10px;
+	font-size: 22px;
+	color: yellow;
+	float: right;
+}
+.si-rating i {
+	margin-right: 5px;
+}

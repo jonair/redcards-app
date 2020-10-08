@@ -1,0 +1,6 @@
+Libraries
+*.a
+.idea
+platforms
+hooks
+plugins

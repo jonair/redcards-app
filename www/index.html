@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=high-dpi" />
+  <!-- meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src *; media-src *" / -->
+  <!-- Good default declaration:
+  * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+  * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+  * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+      * Enable inline JS: add 'unsafe-inline' to default-src
+      * Enable eval(): add 'unsafe-eval' to default-src
+  * Create your own at http://cspisawesome.com
+  -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+  <title>RedCards</title>
+  
+  <meta name="theme-color" content="#ff0000">
+
+  <!-- base style -->
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/fontawesome/css/all.min.css" media="all" />
+
+  <link rel="stylesheet" type="text/css" href="fonts/allfonts.css" />
+  <link rel="stylesheet" type="text/css" href="css/redapp.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/allfonts.css" media="all"/>
+
+  <!-- script -->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/lib/moment.min.js"></script>
+  <script type="text/javascript" src="js/lib/handlebars-v4.0.11.js"></script>
+  <script type="text/javascript" src="js/lib/js.cookie.js"></script>
+  <script type="text/javascript" src="js/redmark.js"></script>
+  <script type="text/javascript" src="js/reddata.js"></script>
+  <script type="text/javascript" src="js/redlayouts.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+
+  <!-- card -->
+  <link rel="stylesheet" type="text/css" href="redcard/redcard.css" />
+  <script type="text/javascript" src="redcard/redcardview.js"></script>
+  <script type="text/javascript" src="redcard/redcard.js"></script>
+  <style id="template-css"></style>
+  <!-- end card -->
+
+  <script type="text/javascript">
+    app.initialize(init);
+
+    function init() {
+      initStarted();
+
+      // if not signed in, then...
+      showStartup();
+      // otherwise can go straight to browse
+      // browseCards();
+    }
+
+    function typeMessages() {
+      // maybe?
+      doMessage(1, 'books',  true, function() {
+      doMessage(1, 'cards with',  false, function() {
+      doMessage(2, 'stories',  true, function() {
+      doMessage(2, 'visuals',  true, function() {
+      doMessage(2, 'lessons',  true, function() {
+      doMessage(2, 'wisdom',  true, function() {
+      doMessage(2, 'less words',  true, function() {
+      doMessage(2, 'power',  true, function() {
+      deleteMessage(1, function() {
+      doMessage(1, 'be',  false, function() {
+      doMessage(2, 'well red.',  false, function() {
+      }); }); }); }); }); }); }); }); }); }); });
+    }
+  </script>
+</head>
+
+<body onload="init()"> <!--< only for testing -->
+
+  <div class="app">
+
+    <div id="startup" class="section">
+      <div id="startup-header"></div>
+      <div id="x-card-holder"></div>
+      <div id="messages">
+        <div class="typewriter"> <div id="line-1" class="message"></div> </div>
+        <div class="typewriter"> <div id="line-2" class="message"></div> </div>
+      </div>
+      <div id="signup-footer">
+        <div class="full-input"><input type="email" placeholder="youremail.com" /></div>
+        <div class="button">Create account</div>
+        <div class="footer-message">Already have a RedCards account? Login now.<br />For privacy &amp; terms etc. etc.</div>
+      </div>
+    </div>
+
+    <div id="browse" class="section">
+      <div class="dynamic-heading"><div class="top-title"><pre>RedCards title here</pre></div></div>
+      <div id="library"></div>
+      <div id="browse-footer" class="footer-bar half">
+        <div class="semi">
+          <i id="account" class="fal fa-user-circle"></i>
+          <i id="browse-search" class="fal fa-search"></i>
+          <i id="settings" class="fal fa-cog"></i>
+        </div>
+      </div>
+      <div id="browse-search-info">
+        <input type="text" id="search-text" />
+      </div>
+    </div>
+
+    <div id="read" class="section">
+      <div class="read-overlay"></div>
+      <div id="heading-area">
+        <div id="header-bar"> <!--class="closed" -->
+          <div class="dynamic-heading">
+            <i class="fas fa-chevron-left" id="back-button"></i><div class="top-title"><pre><div id="read-title"></div></pre></div>
+          </div>
+        </div>
+        <div id="previous-cards"> </div>
+      </div>
+      <div id="read-progress"></div>
+
+      <div id="next-card-holder"></div>
+      <div id="card-holder"></div>
+
+      <div id="before-reading"></div>
+
+      <div class="footer-bar hide-footer"><div class="semi">
+        <div id="heart" class="heart-pulse"></div>
+      </div></div>
+    </div>
+
+  </div>
+</body>
+</html>
